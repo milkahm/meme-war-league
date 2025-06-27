@@ -1,0 +1,85 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #001f3f; /* Dark blue background color */
+    color: #ffffff; /* White text for readability */
+    margin: 0;
+    padding: 0;
+}
+
+/* Home Container */
+.home-container {
+    text-align: center;
+    padding: 40px;
+}
+
+/* Title Styles */
+.home-title {
+    font-size: 2.5em;
+    color: #ffcc00; /* Bright yellow for the title */
+    margin-bottom: 20px;
+    opacity: 0; /* Start hidden */
+    transform: translateY(-50px); /* Start above */
+    animation: descend 1s forwards; /* Apply animation */
+}
+
+/* Description Styles */
+.home-description {
+    font-size: 1.2em;
+    color: #ffffff; /* White text for description */
+    margin-bottom: 30px;
+}
+
+/* Meme Gallery */
+.meme-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between meme images */
+    margin-bottom: 30px;
+}
+
+/* Meme Image Styles */
+.meme-image {
+    width: 200px; /* Set a fixed width for meme images */
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.meme-image:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Button Styles */
+.meme-button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff; /* White text */
+    background-color: #ff4500; /* Bright orange background */
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.meme-button:hover {
+    background-color: #ff6347; /* Lighter orange on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Animation for Descending Effect */
+@keyframes descend {
+    to {
+        opacity: 1; /* Fade in */
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .home-title {
+        font-size: 2em; /* Adjust title size for smaller screens */
+    }
+
+    .meme-button {
+        width: 100%; /* Full width buttons on small screens */
+    }
+}

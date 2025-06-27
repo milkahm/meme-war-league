@@ -1,0 +1,192 @@
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    /* background-image: url('https://i.imgur.com/1Z1g5gD.jpg'); */ /* Removed background image */
+    background-color: #001f3f; /* Dark blue background color */
+    color: #ffffff; /* White text for readability */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for all content */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 128, 0.8); /* Dark blue background with transparency */
+}
+
+/* Headings */
+h2 {
+    color: #e0e0e0; /* Light grey color for headings */
+    text-align: center;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between form elements */
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+    padding: 10px;
+    border: 2px solid #ffffff; /* White border */
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    background-color: rgba(255, 255, 255, 0.2); /* Light background for input fields */
+    color: #ffffff; /* White text */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+select:focus {
+    border-color: #00bfff; /* Bright blue border on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Error Messages */
+.error {
+    color: #ff4d4d; /* Red color for error messages */
+    font-size: 0.9em;
+}
+
+/* Button Styles */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff; /* White text */
+    background-color: #003366; /* Dark blue background */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #00509e; /* Lighter blue background on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+button:disabled {
+    background-color: #ccc; /* Grey background for disabled buttons */
+    cursor: not-allowed; /* Change cursor for disabled buttons */
+}
+
+/* Link Styles */
+a {
+    color: #00bfff; /* Bright blue color for links */
+    text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px; /* Reduce padding on smaller screens */
+    }
+
+    button {
+        width: 100%; /* Full width buttons on small screens */
+    }
+}
+
+/* styles.css */
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #001f3f; /* Dark blue background color */
+    color: #ffffff; /* White text for readability */
+    margin: 0;
+    padding: 0;
+}
+
+/* Home Container */
+.home-container {
+    text-align: center;
+    padding: 40px;
+}
+
+/* Title Styles */
+.home-title {
+    font-size: 2.5em;
+    color: #ffcc00; /* Bright yellow for the title */
+    margin-bottom: 20px;
+    opacity: 0; /* Start hidden */
+    transform: translateY(-50px); /* Start above */
+    animation: descend 1s forwards; /* Apply animation */
+}
+
+/* Description Styles */
+.home-description {
+    font-size: 1.2em;
+    color: #ffffff; /* White text for description */
+    margin-bottom: 30px;
+}
+
+/* Meme Gallery */
+.meme-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between meme images */
+    margin-bottom: 30px;
+}
+
+/* Meme Image Styles */
+.meme-image {
+    width: 200px; /* Set a fixed width for meme images */
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.meme-image:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Button Styles */
+.meme-button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff; /* White text */
+    background-color: #ff4500; /* Bright orange background */
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.meme-button:hover {
+    background-color: #ff6347; /* Lighter orange on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Animation for Descending Effect */
+@keyframes descend {
+    to {
+        opacity: 1; /* Fade in */
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .home-title {
+        font-size: 2em; /* Adjust title size for smaller screens */
+    }
+
+    .meme-button {
+        width: 100%; /* Full width buttons on small screens */
+    }
+}
