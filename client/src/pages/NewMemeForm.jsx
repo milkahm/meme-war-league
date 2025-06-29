@@ -12,11 +12,11 @@ const NewMemeForm = () => {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    fetch('http://localhost:5000/memes', {
+    fetch('http://localhost:5000/memes/', { // ✅ Use trailing slash
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      credentials: 'include', // ✅ include session cookie
-      body: JSON.stringify(values), // ❌ no user_id
+      credentials: 'include', // ✅ Include session cookie
+      body: JSON.stringify(values),
     })
       .then((res) => {
         if (!res.ok) throw new Error("Failed to submit meme");
@@ -29,7 +29,7 @@ const NewMemeForm = () => {
       })
       .catch((err) => {
         console.error(err);
-        alert('You must be logged in to submit a meme.');
+        alert('Failed to submit meme. Please try again.');
       });
   };
 

@@ -25,13 +25,10 @@ function Memes({ user }) {
     <div>
       <h2>All Memes</h2>
 
-      {user ? (
-        <Link to="/newmeme">
-          <button style={{ marginBottom: '1rem' }}>Add New Meme</button>
-        </Link>
-      ) : (
-        <p><i>Login to submit a meme</i></p>
-      )}
+      {/* Always show the Add New Meme button */}
+      <Link to="/newmeme">
+        <button style={{ marginBottom: '1rem' }}>Add New Meme</button>
+      </Link>
 
       {memes.map((meme) => (
         <MemeCard

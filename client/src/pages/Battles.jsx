@@ -29,11 +29,8 @@ function Battles({ user }) {
   }, []);
 
   const handleStartBattle = () => {
-    if (user) {
-      navigate('/startbattle'); // Navigate to StartBattleForm
-    } else {
-      alert('Please log in to start a battle.'); // Alert if user is not logged in
-    }
+    // Remove the login check to allow all users to start a battle
+    navigate('/startbattle'); // Navigate to StartBattleForm
   };
 
   return (
@@ -44,7 +41,8 @@ function Battles({ user }) {
         Start Battle
       </button>
 
-      {!user && <p><i>Log in to participate in battles</i></p>}
+      {/* Remove the login prompt */}
+      {/* <p><i>Log in to participate in battles</i></p> */}
 
       {battles.length === 0 ? (
         <p>No ongoing battles at the moment.</p> // Message for no battles

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function StartBattleForm({ user }) {
+function StartBattleForm() {
   const [title, setTitle] = useState('');
   const [selectedMemes, setSelectedMemes] = useState([]);
   const [memes, setMemes] = useState([]);
@@ -64,7 +64,7 @@ function StartBattleForm({ user }) {
     return <p>Error: {error}</p>; // Error handling
   }
 
-  return user ? (
+  return (
     <form onSubmit={handleSubmit}>
       <h3>Start New Battle</h3>
       <label>Title:</label>
@@ -117,8 +117,6 @@ function StartBattleForm({ user }) {
       </button>
       {selectedMemes.length < 2 && <p style={{ color: 'red' }}>Please select at least 2 memes.</p>} {/* Validation feedback */}
     </form>
-  ) : (
-    <p><i>Login to start a battle.</i></p>
   );
 }
 

@@ -65,7 +65,7 @@ class Vote(db.Model):
     __tablename__ = 'votes'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
     battle_id = db.Column(db.Integer, db.ForeignKey('battles.id'), nullable=False)
     chosen_meme_id = db.Column(db.Integer, db.ForeignKey('memes.id'), nullable=False)
 

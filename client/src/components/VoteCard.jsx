@@ -1,8 +1,7 @@
-// VoteCard.jsx
 import React from 'react';
 import VoteForm from './VoteForm';
 
-const VoteCard = ({ user }) => {
+const VoteCard = () => {
   const handleVoteSubmit = async (voteData) => {
     try {
       const response = await fetch('/votes', {
@@ -24,7 +23,7 @@ const VoteCard = ({ user }) => {
   };
 
   return (
-    <VoteForm onSubmit={handleVoteSubmit} userId={user.id} />
+    <VoteForm onSubmit={handleVoteSubmit} />
   );
 };
 

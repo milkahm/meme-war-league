@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models import db, Vote, Meme  # Ensure Meme model is imported
+from app.models import db, Vote, Meme
 from sqlalchemy.exc import IntegrityError
 
 votes_bp = Blueprint('votes', __name__, url_prefix='/votes')
@@ -9,46 +9,46 @@ def vote():
     data = request.get_json()
 
     # Validate incoming data
-    if not data or 'user_id' not in data or 'battle_id' not in data or 'chosen_meme_id' not in data:
+    if not data or 'battle_id' not in data or 'chosen_meme_id' not in data:
         return jsonify({'error': 'Missing required fields'}), 400
 
     try:
-        # Check if the user has already voted in this battle
+        # Optional: prevent duplicate votes for same meme in the same battle
         existing_vote = Vote.query.filter_by(
-            user_id=data['user_id'],
-            battle_id=data['battle_id']
+            battle_id=data['battle_id'],
+            chosen_meme_id=data['chosen_meme_id']
         ).first()
 
         if existing_vote:
-            return jsonify({'error': 'User  has already voted in this battle'}), 400
+            return jsonify({'error': 'A vote for this meme in this battle already exists'}), 400
 
-        # Create a new Vote instance
+        # Create vote (no user_id required for anonymous voting)
         vote = Vote(
-            user_id=data['user_id'],
             battle_id=data['battle_id'],
             chosen_meme_id=data['chosen_meme_id']
         )
-        
-        # Add the vote to the session and commit
+
         db.session.add(vote)
         db.session.commit()
 
-        # Update the vote count for the chosen meme
+        # Update vote count for the meme
         chosen_meme = Meme.query.get(data['chosen_meme_id'])
         if chosen_meme:
-            chosen_meme.vote_count += 1  # Assuming you have a vote_count field in your Meme model
+            chosen_meme.vote_count += 1
             db.session.commit()
 
-        return jsonify({'message': 'Vote recorded', 'vote': {
-            'user_id': vote.user_id,
-            'battle_id': vote.battle_id,
-            'chosen_meme_id': vote.chosen_meme_id,
-            'new_vote_count': chosen_meme.vote_count  # Return the updated vote count
-        }}), 201
+        return jsonify({
+            'message': 'Vote recorded',
+            'vote': {
+                'battle_id': vote.battle_id,
+                'chosen_meme_id': vote.chosen_meme_id,
+                'new_vote_count': chosen_meme.vote_count
+            }
+        }), 201
 
     except IntegrityError:
-        db.session.rollback()  # Rollback the session in case of integrity error
-        return jsonify({'error': 'Vote could not be recorded due to integrity error'}), 400
+        db.session.rollback()
+        return jsonify({'error': 'Integrity error while saving vote'}), 400
     except Exception as e:
-        db.session.rollback()  # Rollback the session in case of error
+        db.session.rollback()
         return jsonify({'error': str(e)}), 500

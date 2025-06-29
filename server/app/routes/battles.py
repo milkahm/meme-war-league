@@ -15,9 +15,6 @@ def get_battles():
 
 @battles_bp.route('/', methods=['POST'])
 def create_battle():
-    if not session.get('user_id'):
-        return jsonify({'error': 'Unauthorized – please log in first'}), 401
-
     data = request.get_json()
     title = data.get('title')
     entries = data.get('entries', [])
